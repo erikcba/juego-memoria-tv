@@ -122,33 +122,35 @@ export default function MemoryGame() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-yellow-300">
-      <div className="w-full max-w-[90vw] sm:max-w-xs relative">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-yellow-300 overflow-hidden absolute inset-0">
+      <div className="w-full max-w-[90vw] md:max-w-[70vw] lg:max-w-[50vw] px-4 py-8 relative">
         {/* Elementos decorativos */}
-        <div className="absolute -top-10 -left-10 text-orange-400 opacity-50 transform rotate-12">
-          <Star className="w-16 h-16" />
+        <div className="absolute -top-20 -left-20 text-orange-400 opacity-50 transform rotate-12">
+          <Star className="w-24 h-24" />
         </div>
- 
+        <div className="absolute -bottom-20 -right-20 text-orange-400 opacity-50 transform -rotate-12">
+          <Star className="w-24 h-24" />
+        </div>
 
-        <div className="mb-8 text-center bg-black bg-opacity-90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-orange-500">
-          <h1 className="text-3xl font-bold text-white mb-2 flex items-center justify-center gap-2">
-            <Sparkles className="h-6 w-6 text-orange-500" />
+        <div className="mb-12 text-center bg-black bg-opacity-90 backdrop-blur-sm rounded-xl p-8 shadow-xl border-2 border-orange-500">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 flex items-center justify-center gap-3">
+            <Sparkles className="h-8 w-8 text-orange-500" />
             Juego de Memoria
-            <Sparkles className="h-6 w-6 text-orange-500" />
+            <Sparkles className="h-8 w-8 text-orange-500" />
           </h1>
-          <p className="text-orange-400 mb-4">Encuentra todos los pares de tarjetas</p>
+          <p className="text-orange-400 mb-6 text-xl">Encuentra todos los pares de tarjetas</p>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 p-3 rounded-lg shadow-sm border border-orange-500/30">
-              <div className="text-white font-medium flex items-center justify-center gap-1">
-                <Medal className="h-4 w-4 text-orange-500" />
+          <div className="grid grid-cols-2 gap-6 mb-6">
+            <div className="bg-gradient-to-r from-gray-900 to-gray-800 p-4 rounded-lg shadow-sm border border-orange-500/30">
+              <div className="text-white font-medium flex items-center justify-center gap-2 text-xl">
+                <Medal className="h-6 w-6 text-orange-500" />
                 <span>Movimientos:</span>
                 <span className="font-bold">{moves}</span>
               </div>
             </div>
-            <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-3 rounded-lg shadow-sm border border-orange-500/30">
-              <div className="text-white font-medium flex items-center justify-center gap-1">
-                <Trophy className="h-4 w-4 text-orange-500" />
+            <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-4 rounded-lg shadow-sm border border-orange-500/30">
+              <div className="text-white font-medium flex items-center justify-center gap-2 text-xl">
+                <Trophy className="h-6 w-6 text-orange-500" />
                 <span>Puntaje:</span>
                 <span className="font-bold text-orange-400">{score}</span>
               </div>
@@ -156,52 +158,55 @@ export default function MemoryGame() {
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="text-white font-medium flex items-center gap-1">
-              <Crown className="h-4 w-4 text-orange-500" />
+            <div className="text-white font-medium flex items-center gap-2 text-xl">
+              <Crown className="h-6 w-6 text-orange-500" />
               Mejor: <span className="font-bold text-orange-400">{bestScore}</span>
             </div>
             <Button
               variant="outline"
-              size="sm"
+              size="lg"
               onClick={resetGame}
-              className="flex items-center gap-1 bg-black hover:bg-gray-900 border-orange-500 text-white hover:text-orange-400"
+              className="flex items-center gap-2 bg-black hover:bg-gray-900 border-orange-500 text-white hover:text-orange-400 text-lg px-6"
             >
-              <RotateCcw className="h-4 w-4" />
+              <RotateCcw className="h-5 w-5" />
               Reiniciar
             </Button>
           </div>
         </div>
 
         {isGameComplete ? (
-          <div className="bg-black border border-orange-500 rounded-xl p-8 text-center mb-6 animate-fade-in shadow-lg">
+          <div className="bg-black border-2 border-orange-500 rounded-xl p-10 text-center mb-8 animate-fade-in shadow-xl">
             <div className="relative">
-              <Trophy className="h-16 w-16 text-orange-500 mx-auto mb-4" />
+              <Trophy className="h-24 w-24 text-orange-500 mx-auto mb-6" />
               {isNewBestScore && (
                 <div className="absolute top-0 right-1/3 animate-pulse">
-                  <Sparkles className="h-6 w-6 text-orange-400" />
+                  <Sparkles className="h-8 w-8 text-orange-400" />
                 </div>
               )}
             </div>
-            <h2 className="text-2xl font-bold text-white mb-2">¡Felicidades!</h2>
-            <p className="text-orange-400 mb-1">Has completado el juego en {moves} movimientos</p>
-            <p className="text-orange-500 font-bold text-2xl mb-2">Puntaje final: {score}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">¡Felicidades!</h2>
+            <p className="text-orange-400 mb-2 text-xl">Has completado el juego en {moves} movimientos</p>
+            <p className="text-orange-500 font-bold text-3xl mb-4">Puntaje final: {score}</p>
 
             {isNewBestScore && (
-              <div className="bg-gray-900 border border-orange-500 rounded-lg p-2 mb-4 animate-bounce-slow">
-                <p className="text-white font-bold flex items-center justify-center gap-1">
-                  <Crown className="h-5 w-5 text-orange-500" />
+              <div className="bg-gray-900 border border-orange-500 rounded-lg p-4 mb-6 animate-bounce-slow">
+                <p className="text-white font-bold flex items-center justify-center gap-2 text-xl">
+                  <Crown className="h-6 w-6 text-orange-500" />
                   ¡Nuevo récord!
-                  <Crown className="h-5 w-5 text-orange-500" />
+                  <Crown className="h-6 w-6 text-orange-500" />
                 </p>
               </div>
             )}
 
-            <Button onClick={resetGame} className="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-2">
+            <Button
+              onClick={resetGame}
+              className="bg-orange-500 hover:bg-orange-600 text-white font-medium px-8 py-3 text-xl"
+            >
               Jugar de nuevo
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 gap-6 md:gap-8">
             {cards.map((card, index) => (
               <div
                 key={index}
@@ -227,15 +232,16 @@ export default function MemoryGame() {
                       backface-hidden
                       flex items-center justify-center
                       bg-black hover:bg-gray-900
-                      rounded-full border-2 border-white border-opacity-20
+                      rounded-full border-4 border-white border-opacity-20
                       overflow-hidden
+                      p-4
                     `}
                   >
                     <Image
                       src="/club-vea-vinos-logo.png"
                       alt="Club Vea Vinos"
-                      width={100}
-                      height={100}
+                      width={200}
+                      height={200}
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -247,23 +253,24 @@ export default function MemoryGame() {
                       backface-hidden rotate-y-180
                       flex items-center justify-center
                       bg-black
-                      rounded-full border-2 ${card.isMatched ? "border-orange-500" : "border-orange-500"}
+                      rounded-full border-4 ${card.isMatched ? "border-orange-500" : "border-orange-500"}
                       overflow-hidden
                       ${card.isMatched ? "opacity-70" : ""}
+                      p-4
                     `}
                   >
                     {card.content.isLogo ? (
-                      <div className="w-full h-full p-2">
+                      <div className="w-full h-full p-4">
                         <Image
-                          src="/vea-logo.png"
+                          src="/vea-logo-nuevo.png"
                           alt="Vea Logo"
-                          width={100}
-                          height={100}
+                          width={200}
+                          height={200}
                           className="w-full h-full object-contain"
                         />
                       </div>
                     ) : (
-                      <span className="text-white font-bold text-lg sm:text-xl text-center">{card.content.text}</span>
+                      <span className="text-white font-bold text-2xl md:text-3xl text-center">{card.content.text}</span>
                     )}
                   </div>
                 </div>
